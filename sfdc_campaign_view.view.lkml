@@ -56,7 +56,7 @@ view: sfdc_campaign_view {
 
     dimension: is_deleted {
       type: yesno
-      sql: ${TABLE}.isdeleted ;;
+      sql: ${TABLE}.isdeleted = 'TRUE' ;;
     }
 
     dimension_group: last_activity {
@@ -167,3 +167,7 @@ view: sfdc_campaign_view {
       drill_fields: [id, name]
     }
   }
+
+view: campaign {
+  extends: [sfdc_campaign_view]
+}

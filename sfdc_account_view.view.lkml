@@ -10,54 +10,54 @@ view: sfdc_account_view {
 
   dimension: annual_revenue {
     type: number
-    sql: ${TABLE}.annual_revenue ;;
+    sql: NULLIF(${TABLE}.annualrevenue,'') ;;
   }
 
   dimension: billing_city {
     type: string
-    sql: ${TABLE}.billing_city ;;
+    sql: ${TABLE}.billingcity ;;
   }
 
   dimension: billing_country {
     type: string
-    sql: ${TABLE}.billing_country ;;
+    sql: ${TABLE}.billingcountry ;;
   }
 
   dimension: billing_latitude {
     type: number
-    sql: ${TABLE}.billing_latitude ;;
+    sql: ${TABLE}.billinglatitude ;;
   }
 
   dimension: billing_longitude {
     type: number
-    sql: ${TABLE}.billing_longitude ;;
+    sql: ${TABLE}.billinglongitude ;;
   }
 
   dimension: billing_postal_code {
     type: string
-    sql: ${TABLE}.billing_postal_code ;;
+    sql: ${TABLE}.billingpostalcode ;;
   }
 
   dimension: billing_state {
     type: string
-    sql: ${TABLE}.billing_state ;;
+    sql: ${TABLE}.billingstate ;;
   }
 
   dimension: billing_street {
     type: string
-    sql: ${TABLE}.billing_street ;;
+    sql: ${TABLE}.billingstreet ;;
   }
 
   dimension: created_by_id {
     type: string
     hidden: yes
-    sql: ${TABLE}.created_by_id ;;
+    sql: ${TABLE}.createdbyid ;;
   }
 
   dimension_group: created {
     type: time
     timeframes: [time, date, week, month]
-    sql: ${TABLE}.created_date ;;
+    sql: ${TABLE}.createddate ;;
   }
 
   dimension: description {
@@ -67,7 +67,7 @@ view: sfdc_account_view {
 
   dimension: duns_number {
     type: string
-    sql: ${TABLE}.duns_number ;;
+    sql: ${TABLE}.dunsnumber ;;
   }
 
   dimension: fax {
@@ -82,54 +82,54 @@ view: sfdc_account_view {
 
   dimension: is_deleted {
     type: yesno
-    sql: ${TABLE}.is_deleted ;;
+    sql: ${TABLE}.isdeleted = 'TRUE' ;;
   }
 
   dimension_group: last_activity {
     type: time
     timeframes: [date, week, month]
     convert_tz: no
-    sql: ${TABLE}.last_activity_date ;;
+    sql: ${TABLE}.lastactivitydate ;;
   }
 
   dimension: last_modified_by_id {
     type: string
     hidden: yes
-    sql: ${TABLE}.last_modified_by_id ;;
+    sql: ${TABLE}.lastmodifiedbyid ;;
   }
 
   dimension_group: last_modified {
     type: time
     timeframes: [time, date, week, month]
-    sql: ${TABLE}.last_modified_date ;;
+    sql: ${TABLE}.lastmodifieddate ;;
   }
 
   dimension_group: last_referenced {
     type: time
     timeframes: [time, date, week, month]
-    sql: ${TABLE}.last_referenced_date ;;
+    sql: ${TABLE}.lastreferenceddate ;;
   }
 
   dimension_group: last_viewed {
     type: time
     timeframes: [time, date, week, month]
-    sql: ${TABLE}.last_viewed_date ;;
+    sql: ${TABLE}.lastvieweddate ;;
   }
 
   dimension: master_record_id {
     type: string
     hidden: yes
-    sql: ${TABLE}.master_record_id ;;
+    sql: ${TABLE}.masterrecordid ;;
   }
 
   dimension: naics_code {
     type: string
-    sql: ${TABLE}.naics_code ;;
+    sql: ${TABLE}.naicscode ;;
   }
 
   dimension: naics_desc {
     type: string
-    sql: ${TABLE}.naics_desc ;;
+    sql: ${TABLE}.naicsdesc ;;
   }
 
   dimension: name {
@@ -139,19 +139,19 @@ view: sfdc_account_view {
 
   dimension: number_of_employees {
     type: number
-    sql: ${TABLE}.number_of_employees ;;
+    sql: ${TABLE}.numberofemployees ;;
   }
 
   dimension: owner_id {
     type: string
     hidden: yes
-    sql: ${TABLE}.owner_id ;;
+    sql: ${TABLE}.ownerid ;;
   }
 
   dimension: parent_id {
     type: string
     hidden: yes
-    sql: ${TABLE}.parent_id ;;
+    sql: ${TABLE}.parentid ;;
   }
 
   dimension: phone {
@@ -161,54 +161,54 @@ view: sfdc_account_view {
 
   dimension: photo_url {
     type: string
-    sql: ${TABLE}.photo_url ;;
+    sql: ${TABLE}.photourl ;;
   }
 
   dimension: record_type_id {
     type: string
     hidden: yes
-    sql: ${TABLE}.record_type_id ;;
+    sql: ${TABLE}.recordtypeid ;;
   }
 
   dimension: shipping_city {
     type: string
-    sql: ${TABLE}.shipping_city ;;
+    sql: ${TABLE}.shippingcity ;;
   }
 
   dimension: shipping_country {
     type: string
-    sql: ${TABLE}.shipping_country ;;
+    sql: ${TABLE}.shippingcountry ;;
   }
 
   dimension: shipping_latitude {
     type: number
-    sql: ${TABLE}.shipping_latitude ;;
+    sql: ${TABLE}.shippinglatitude ;;
   }
 
   dimension: shipping_longitude {
     type: number
-    sql: ${TABLE}.shipping_longitude ;;
+    sql: ${TABLE}.shippinglongitude ;;
   }
 
   dimension: shipping_postal_code {
     type: string
-    sql: ${TABLE}.shipping_postal_code ;;
+    sql: ${TABLE}.shippingpostalcode ;;
   }
 
   dimension: shipping_state {
     type: string
-    sql: ${TABLE}.shipping_state ;;
+    sql: ${TABLE}.shippingstate ;;
   }
 
   dimension: shipping_street {
     type: string
-    sql: ${TABLE}.shipping_street ;;
+    sql: ${TABLE}.shippingstreet ;;
   }
 
   dimension_group: system_modstamp {
     type: time
     timeframes: [time, date, week, month]
-    sql: ${TABLE}.system_modstamp ;;
+    sql: ${TABLE}.systemmodstamp ;;
   }
 
   dimension: type {
@@ -229,4 +229,68 @@ view: sfdc_account_view {
   }
 
 
+}
+
+view: account {
+  extends: [sfdc_account_view]
+  # dimensions #
+
+  dimension: created {
+    #X# Invalid LookML inside "dimension": {"timeframes":["date","week","month","raw"]}
+  }
+
+  dimension: business_segment {
+    type: string
+
+    case: {
+      when: {
+        sql: ${number_of_employees} BETWEEN 0 AND 500 ;;
+        label: "Small Business"
+      }
+
+      when: {
+        sql: ${number_of_employees} BETWEEN 501 AND 1000 ;;
+        label: "Mid-Market"
+      }
+
+      when: {
+        sql: ${number_of_employees} > 1000 ;;
+        label: "Enterprise"
+      }
+
+      else: "Unknown"
+    }
+  }
+
+  # measures #
+
+  measure: percent_of_accounts {
+    type: percent_of_total
+    sql: ${count} ;;
+  }
+
+  measure: average_annual_revenue {
+    type: average
+    sql: ${annual_revenue} ;;
+    value_format: "$#,##0"
+  }
+
+  measure: total_number_of_employees {
+    type: sum
+    sql: ${number_of_employees} ;;
+  }
+
+  measure: average_number_of_employees {
+    type: average
+    sql: ${number_of_employees} ;;
+  }
+
+  measure: count_customers {
+    type: count
+
+    filters: {
+      field: account.type
+      value: "\"Customer\""
+    }
+  }
 }
