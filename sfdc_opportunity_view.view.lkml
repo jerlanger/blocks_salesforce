@@ -53,6 +53,7 @@ view: sfdc_opportunity_view {
     dimension: fiscal {
       type: string
       sql: ${TABLE}.fiscal ;;
+      hidden: yes
     }
 
     dimension: fiscal_quarter {
@@ -68,31 +69,36 @@ view: sfdc_opportunity_view {
     dimension: forecast_category {
       type: string
       sql: ${TABLE}.forecastcategory ;;
+      hidden: yes
     }
 
     dimension: forecast_category_name {
       type: string
       sql: ${TABLE}.forecastcategoryname ;;
+      group_label: "Status"
     }
 
     dimension: has_opportunity_line_item {
       type: yesno
-      sql: ${TABLE}.has_opportunitylineitem = 'TRUE';;
+      sql: ${TABLE}.has_opportunitylineitem = 'true';;
     }
 
     dimension: is_closed {
       type: yesno
-      sql: ${TABLE}.isclosed = 'TRUE';;
+      sql: ${TABLE}.isclosed = 'true';;
+      group_label: "Status"
     }
 
     dimension: is_deleted {
       type: yesno
-      sql: ${TABLE}.isdeleted = 'TRUE';;
+      sql: ${TABLE}.isdeleted = 'true';;
+      group_label: "Status"
     }
 
     dimension: is_won {
       type: yesno
-      sql: ${TABLE}.iswon = 'TRUE';;
+      sql: ${TABLE}.iswon = 'true';;
+      group_label: "Status"
     }
 
     dimension_group: last_activity {
@@ -151,11 +157,13 @@ view: sfdc_opportunity_view {
     dimension: probability {
       type: number
       sql: ${TABLE}.probability ;;
+      group_label: "Status"
     }
 
     dimension: stage_name {
       type: string
       sql: ${TABLE}.stagename ;;
+      group_label: "Status"
     }
 
     dimension: synced_quote_id {
@@ -219,6 +227,7 @@ view: sfdc_opportunity_view {
     dimension: css_email {
       type: string
       sql: ${TABLE}.css_email__c ;;
+      label: "CSS Email"
       description: "Client services specialist email"
     }
 
@@ -256,6 +265,91 @@ view: sfdc_opportunity_view {
       description: "Primary IAB Category"
     }
 
+    dimension: lfm_io_id {
+      type: string
+      sql: ${TABLE}.lfm_io_id__c ;;
+      label: "LFM Insertion Order"
+      description: "Corresponding IO in Liveintent's platform"
+      value_format_name: decimal_0
+    }
+
+    dimension: css_name {
+      type: string
+      sql: ${TABLE}.opportunity_css__c ;;
+      label: "CSS Name"
+      description: "Name of CSS associated with the opportunity"
+    }
+
+    dimension: inbound_or_outbound_opportunity {
+      type: string
+      sql: ${TABLE}.opportunity_origin__c ;;
+      description: "Source of opportunity"
+    }
+
+    dimension: opportunity_sfdc_18_id {
+      type: string
+      sql: ${TABLE}.opportunity_sfdc_18__c ;;
+      description: "18 Character Salesforce ID"
+      hidden: yes
+    }
+
+    dimension: reason_lost_description {
+      type: string
+      sql: ${TABLE}.reason_lost__c ;;
+      description: "Description of loss reason if marked as 'other'"
+    }
+
+    dimension: owner_team {
+      type: string
+      sql: ${TABLE}.owner_team__c ;;
+      description: "The Liveintent team that the opportunity owner belongs to"
+    }
+
+    dimension: pct_direct_sold_impressions {
+      type: number
+      sql: ${TABLE}.directsold__c ;;
+      description: "Expected direct sold impressions ÷ total opportunity impressions"
+    }
+
+    dimension: number_campaigns_associated {
+      type: number
+      sql: ${TABLE}.product_count__c ;;
+      description: "Number of campaigns associated with opportunity"
+      value_format_name: decimal_0
+    }
+
+    dimension: reason_lost {
+      type: string
+      sql: ${TABLE}.reason_lost__c ;;
+      description: "Reason opportunity was lost"
+    }
+
+    dimension: stalled_reason {
+      type: string
+      sql: ${TABLE}.stalled_reason__c ;;
+      description: "Reason opportunity has been marked as 'stalled'"
+    }
+
+    dimension: expected_monthly_impressions {
+      type: number
+      sql: ${TABLE}.impressions__c ;;
+      #description: "Expected monthly impressions"
+      value_format_name: decimal_0
+    }
+
+    dimension: expected_ad_units {
+      type: number
+      sql: ${TABLE}.ad_units_added__c ;;
+      value_format_name: decimal_0
+      description: "Number of ad units expected to be added"
+    }
+
+    dimension: has_incremental_budget_added {
+      type: yesno
+      sql: ${TABLE}.incremental__c = 'true' ;;
+      description: "Client has added incremental budget to opportunity"
+    }
+
     # measures #
 
     measure: count {
@@ -266,6 +360,7 @@ view: sfdc_opportunity_view {
 
 view: opportunity {
   extends: [sfdc_opportunity_view]
+
   # dimensions #
 
   dimension: is_lost {
