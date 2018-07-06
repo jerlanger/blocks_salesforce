@@ -94,6 +94,7 @@ view: sfdc_account_view {
   dimension: industry {
     type: string
     sql: ${TABLE}.industry ;;
+    group_label: "Company Information"
   }
 
   dimension: is_deleted {
@@ -148,16 +149,19 @@ view: sfdc_account_view {
   dimension: naics_desc {
     type: string
     sql: ${TABLE}.naicsdesc ;;
+    group_label: "Company Information"
   }
 
   dimension: name {
     type: string
     sql: ${TABLE}.name ;;
+    group_label: "Company Information"
   }
 
   dimension: number_of_employees {
     type: number
     sql: ${TABLE}.numberofemployees ;;
+    group_label: "Company Information"
   }
 
   dimension: owner_id {
@@ -175,11 +179,13 @@ view: sfdc_account_view {
   dimension: phone {
     type: string
     sql: ${TABLE}.phone ;;
+    hidden: yes
   }
 
   dimension: photo_url {
     type: string
     sql: ${TABLE}.photourl ;;
+    hidden: yes
   }
 
   dimension: record_type_id {
@@ -191,52 +197,63 @@ view: sfdc_account_view {
   dimension: shipping_city {
     type: string
     sql: ${TABLE}.shippingcity ;;
+    hidden: yes
   }
 
   dimension: shipping_country {
     type: string
     sql: ${TABLE}.shippingcountry ;;
+    hidden: yes
   }
 
   dimension: shipping_latitude {
     type: number
     sql: ${TABLE}.shippinglatitude ;;
+    hidden: yes
   }
 
   dimension: shipping_longitude {
     type: number
     sql: ${TABLE}.shippinglongitude ;;
+    hidden: yes
   }
 
   dimension: shipping_postal_code {
     type: string
     sql: ${TABLE}.shippingpostalcode ;;
+    hidden: yes
   }
 
   dimension: shipping_state {
     type: string
     sql: ${TABLE}.shippingstate ;;
+    hidden: yes
   }
 
   dimension: shipping_street {
     type: string
     sql: ${TABLE}.shippingstreet ;;
+    hidden: yes
   }
 
   dimension_group: system_modstamp {
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.systemmodstamp ;;
+    hidden: yes
   }
 
   dimension: type {
     type: string
-    sql: ${TABLE}.type ;;
+    label: "Account Type"
+    sql: NULLIF(${TABLE}.type,'') ;;
+    group_label: "Company Information"
   }
 
   dimension: website {
     type: string
     sql: ${TABLE}.website ;;
+    hidden: yes
   }
 
   # custom dimensions
@@ -248,9 +265,10 @@ view: sfdc_account_view {
     hidden: yes
   }
 
-  dimension: owner_name {
+  dimension: owner {
     type: string
-    sql: ${TABLE}.acount_owner_name__c ;;
+    sql: NULLIF(${TABLE}.account_owner_name__c,'') ;;
+    group_label: "Sales Ownership"
   }
 
   dimension: id_account_sfdc_18 {
@@ -262,14 +280,15 @@ view: sfdc_account_view {
 
   dimension: customer_service_specialist {
     type: string
-    sql: ${TABLE}.css__c ;;
-    description: "CSS associated with account"
+    sql: NULLIF(${TABLE}.css__c,'') ;;
+    group_label: "Sales Ownership"
   }
 
   dimension: account_advertiser_history {
     type: string
     sql: ${TABLE}.advertiser_account_status__c ;;
     description: "Relationship and recency of client to LI's ad-side business"
+    group_label: "Relationship to LiveIntent"
   }
 
   dimension: id_associated_agency {
@@ -279,21 +298,25 @@ view: sfdc_account_view {
     hidden: yes
   }
 
-  dimension: associated_agency_owner_name {
+  dimension: associated_agency_owner {
     type: string
     sql: ${TABLE}.associated_agency_owner__c ;;
+    description: "Owner of agency associated with account"
+    group_label: "Sales Ownership"
   }
 
-  dimension: legacy_timeline {
+  dimension: projected_legacy_date {
     type: string
     sql: ${TABLE}.client_becomes_legacy__c ;;
     description: "Time in which a client will convert to a legacy client"
+    group_label: "Relationship to LiveIntent"
   }
 
   dimension: client_classification_type {
     type: string
     sql: ${TABLE}.client_classification__c ;;
     description: "Is client media, SMB, or brand"
+    group_label: "Commissions"
   }
 
   dimension: id_client {
@@ -307,12 +330,14 @@ view: sfdc_account_view {
     type: string
     sql: ${TABLE}.core_tier__c ;;
     description: "Tiers for core advertiser clients"
+    group_label: "Relationship to LiveIntent"
   }
 
   dimension: core_tier_publisher {
     type: string
     sql: ${TABLE}.core_publisher_tier__c ;;
     description: "Tiers for core publisher clients"
+    group_label: "Relationship to LiveIntent"
   }
 
   dimension: css_email {
@@ -325,7 +350,8 @@ view: sfdc_account_view {
   dimension: css_manager {
     type: string
     sql: ${TABLE}.css_lead__c ;;
-    description: "Client Services Specialist manager"
+    label: "Client Services Specalist Manager"
+    group_label: "Sales Ownership"
   }
 
   dimension: css_manager_email {
@@ -343,9 +369,10 @@ view: sfdc_account_view {
     group_label: "Commissions"
   }
 
-  dimension: customer_success_director_name {
+  dimension: customer_success_director {
     type: string
     sql: ${TABLE}.customer_success_director__c ;;
+    group_label: "Sales Ownership"
   }
 
   dimension: customer_success_director_email {
@@ -354,9 +381,10 @@ view: sfdc_account_view {
     hidden: yes
   }
 
-  dimension: customer_success_manager_name {
+  dimension: customer_success_manager {
     type: string
     sql: ${TABLE}.primary_account_manager__c ;;
+    group_label: "Sales Ownership"
   }
 
   dimension: customer_success_manager_email {
@@ -551,28 +579,31 @@ view: sfdc_account_view {
     group_label: "Datanyze Information"
   }
 
-  dimension_group: first_opportunity_date {
+  dimension_group: first_opportunity {
     type: time
-    sql: ${TABLE}.minimum_of_opportunity_created_date__c ;;
+    sql: NULLIF(${TABLE}.minimum_of_opportunity_created_date__c,'')::DATE ;;
+    description: "Date of first ever opportunity associated with account"
     timeframes: [raw,date,month,quarter,year]
   }
 
   dimension: full_set_up_status {
     type: string
     sql: ${TABLE}.full_set_up__c ;;
+    group_label: "LI Products Used"
   }
 
   dimension: house_status {
     type: string
     sql: ${TABLE}.house_status__c ;;
     description: "CSM ownership status as 'house' in current FQ commissions"
-    group_label: "Comissions"
+    group_label: "Commissions"
   }
 
   dimension: impressions_above_threshold {
     type: yesno
     sql: ${TABLE}.impressions_above_threshold__c ;;
     description: "Has account hit impression milestone counting towards full set-up status"
+    group_label: "LI Products Used"
   }
 
   dimension: last_date_opportunity_closed_won {
@@ -592,24 +623,28 @@ view: sfdc_account_view {
     type: date
     sql: NULLIF(${TABLE}.last_day_new__c,'')::DATE ;;
     description: "Last date account ownership was changed"
+    group_label: "Sales Ownership"
   }
 
   dimension: is_lbm_client {
     type: yesno
     sql: ${TABLE}.lbm_client__c = 'True' ;;
     description: "Account is self-service client"
+    group_label: "LI Products Used"
   }
 
   dimension: has_liveconnect_tag_placed {
     type: yesno
     sql: ${TABLE}.liveconnect_tag_down__c = 'True' ;;
     description: "LiveConnect tag placed on site"
+    group_label: "LI Products Used"
   }
 
   dimension: last_date_opportunity_creation {
     type: date
     sql: NULLIF(${TABLE}.most_recent_opportunity_create_date__c,'')::DATE ;;
     description: "Last date opportunity was created for account"
+    group_label: "Relationship to LiveIntent"
   }
 
   dimension: is_legacy_client__hidden {
@@ -639,24 +674,27 @@ view: sfdc_account_view {
     type: string
     sql: ${TABLE}.pds_lead_email__c ;;
     description: "Email of associated PDS' manager"
+    hidden: yes
   }
 
   dimension: account_publisher_history {
     type: string
     sql: ${TABLE}.platform_account_status__c ;;
     description: "Relationship and recency of client to LI's publisher-side business"
+    group_label: "Relationship to LiveIntent"
   }
 
   dimension: is_legacy_client {
     type: yesno
     sql: LOWER(NULLIF(${TABLE}.revenue_classification__c,'')) = 'legacy' ;;
     description: "If true then client is legacy. If false client is new. If null client is neither"
+    group_label: "Relationship to LiveIntent"
     }
 
-  dimension: sales_director_name {
+  dimension: sales_director {
     type: string
     sql: ${TABLE}.sales_director__c ;;
-    description: "Name of associated sales director"
+    group_label: "Sales Ownership"
   }
 
   dimension: sales_director_email {
@@ -668,7 +706,6 @@ view: sfdc_account_view {
 
   dimension: id_sfdc_2 {
     # What is the point of this field?
-
     type: string
     sql: ${TABLE}.salesforce_id2__c ;;
     description: "Repeat of SFDC ID"
@@ -679,18 +716,21 @@ view: sfdc_account_view {
     type: yesno
     sql: ${TABLE}.spend_above_threshold__c = 'True' ;;
     description: "Is spend above the threshold needed towards full set-up status?"
+    group_label: "LI Products Used"
   }
 
   dimension: status {
     type: string
     sql: ${TABLE}.status__c ;;
     description: "Current state of account in sales organization"
+    group_label: "Relationship to LiveIntent"
   }
 
   dimension: attributed_prospecting_source {
     type: string
     sql: NULLIF(${TABLE}.strategic_initiatives__c,'') ;;
     description: "Prospecting source attributed to account"
+    group_label: "Relationship to LiveIntent"
   }
 
   dimension: li_tag_manager {
@@ -705,7 +745,7 @@ view: sfdc_account_view {
     type: yesno
     sql: NULLIF(${TABLE}.white_glove_strategic__c,'') = 'True' ;;
     description: "Account approved to recieve 'white glove' marketing support"
-    group_label: "Relationship to Liveintent"
+    group_label: "Relationship to LiveIntent"
   }
 
   dimension: account_manager_email {
@@ -721,6 +761,7 @@ view: sfdc_account_view {
     type: string
     sql: NULLIF(${TABLE}.account_owner_role__c,'') ;;
     description: "Organization team of owner"
+    group_label: "Sales Ownership"
   }
 
   dimension: owner_email {
@@ -742,11 +783,11 @@ view: sfdc_account_view {
     description: "Maximum flight end date for won direct opportunities"
   }
 
-  dimension: account_manager_name {
+  dimension: account_manager {
     # Lots of obsolete values, hiding
     type: string
     sql: NULLIF(${TABLE}.account_manager_name__c,'') ;;
-    description: "Name of associated account manager"
+    group_label: "Sales Ownership"
     hidden: yes
   }
 
@@ -783,6 +824,7 @@ view: sfdc_account_view {
     type: string
     sql: NULLIF(${TABLE}.email_service_provider_del__c,'') ;;
     description: "Manually entered ESP for account"
+    hidden: yes
   }
 
   dimension: first_date_opportunity_closed_won {
@@ -816,6 +858,7 @@ view: sfdc_account_view {
   dimension: days_since_last_won_opportunity {
     type: number
     sql: DATEDIFF(day,${last_date_opportunity_closed_won},CURRENT_DATE) ;;
+    group_label: "Relationship to LiveIntent"
   }
 
   dimension: furthest_won_flight_end_all {
@@ -828,6 +871,7 @@ view: sfdc_account_view {
     type: number
     sql: DATEDIFF(day,${first_date_opportunity_closed_won},CURRENT_DATE) ;;
     description: "Days since first opportunity closed won"
+    group_label: "Relationship to LiveIntent"
   }
 
   # measures #
@@ -845,6 +889,11 @@ view: sfdc_account_view {
     value_format_name: decimal_0
     description: "Sum of open opportunities associated with account"
     group_label: "Summations"
+  }
+
+  measure: average_days_being_LI_customer {
+    type: average
+    sql: ${days_since_account_became_client} ;;
   }
 
 }
@@ -878,6 +927,8 @@ view: account {
 
       else: "Unknown"
     }
+
+    group_label: "Company Information"
   }
 
   # measures #
@@ -907,8 +958,8 @@ view: account {
     type: count
 
     filters: {
-      field: account.type
-      value: "\"Customer\""
+      field: is_current_client
+      value: "True"
     }
   }
 }
