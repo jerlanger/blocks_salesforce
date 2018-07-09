@@ -95,3 +95,13 @@ explore: opportunity {
     relationship: many_to_one
   }
 }
+
+explore: opportunity_test {
+  from: opportunity
+  always_join: [opportunity_product]
+
+  join: opportunity_product {
+    sql_on: ${opportunity_test.id} = ${opportunity_product.opportunity_id};;
+    relationship: one_to_many
+  }
+}

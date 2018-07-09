@@ -17,7 +17,7 @@ view: sfdc_opportunity_view {
 
     dimension: amount {
       type: number
-      sql: NULLIF(${TABLE}.amount,'') ;;
+      sql: NULLIF(${TABLE}.amount,'')::FLOAT ;;
     }
 
     dimension: campaign_id {
@@ -80,7 +80,7 @@ view: sfdc_opportunity_view {
 
     dimension: has_opportunity_line_item {
       type: yesno
-      sql: ${TABLE}.has_opportunitylineitem = 'true';;
+      sql: ${TABLE}.hasopportunitylineitem = 'true';;
     }
 
     dimension: is_closed {
@@ -426,6 +426,12 @@ view: opportunity {
     value_format: "$#,##0"
   }
 
+  #measure: total_revenue_adj {
+  #  type: number
+  #  sql: SUM(CASE WHEN ${opportunity_product.id} IS NULL THEN ${amount} ELSE ${opportunity_product.budget} END) ;;
+  #  value_format_name: usd
+  #}
+
   measure: average_revenue_won {
     label: "Average Revenue (Closed/Won)"
     type: average
@@ -541,7 +547,7 @@ view: opportunity {
     }
 
     filters: {
-      field: opportunity.type
+      field: type
       value: "\"New Business\""
     }
 
@@ -552,7 +558,7 @@ view: opportunity {
     type: count
 
     filters: {
-      field: opportunity.type
+      field: type
       value: "\"New Business\""
     }
 
