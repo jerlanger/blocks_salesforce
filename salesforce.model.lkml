@@ -7,6 +7,9 @@ include: "*.view"
 include: "*.dashboard"
 
 # views to explore——i.e., "base views" #
+datagroup: new_date_refresh {
+  sql_trigger: SELECT MAX(event_date) FROM public.uslicer_exact_fact_new_looker ;;
+}
 
 explore: account {
   sql_always_where: NOT ${account.is_deleted}
@@ -104,4 +107,6 @@ explore: opportunity_test {
     sql_on: ${opportunity_test.id} = ${opportunity_product.opportunity_id};;
     relationship: one_to_many
   }
+
+  hidden: yes
 }

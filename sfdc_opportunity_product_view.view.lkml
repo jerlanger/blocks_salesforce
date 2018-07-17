@@ -29,8 +29,8 @@ view: sfdc_opportunity_product_view {
   }
 
   dimension: campaign_id {
-    type: string
-    sql: NULLIF(${TABLE}.campaign_id__c,'') ;;
+    type: number
+    sql: NULLIF(${TABLE}.campaign_id__c,'')::DECIMAL(18,2)::INT ;;
     description: "LI platform ID"
   }
 

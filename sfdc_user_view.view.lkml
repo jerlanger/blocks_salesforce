@@ -7,11 +7,13 @@ view: sfdc_user_view {
     primary_key: yes
     type: string
     sql: ${TABLE}.id ;;
+    hidden: yes
   }
 
   dimension: about_me {
     type: string
     sql: ${TABLE}.aboutme ;;
+    hidden: yes
   }
 
   dimension: account_id {
@@ -23,11 +25,13 @@ view: sfdc_user_view {
   dimension: alias {
     type: string
     sql: ${TABLE}.alias ;;
+    hidden: yes
   }
 
   dimension: badge_text {
     type: string
     sql: ${TABLE}.badgetext ;;
+    hidden: yes
   }
 
   dimension: call_center_id {
@@ -39,16 +43,19 @@ view: sfdc_user_view {
   dimension: city {
     type: string
     sql: ${TABLE}.city ;;
+    hidden: yes
   }
 
   dimension: community_nickname {
     type: string
     sql: ${TABLE}.communitynickname ;;
+    hidden: yes
   }
 
   dimension: company_name {
     type: string
     sql: ${TABLE}.companyname ;;
+    hidden: yes
   }
 
   dimension: contact_id {
@@ -60,6 +67,7 @@ view: sfdc_user_view {
   dimension: country {
     type: string
     sql: ${TABLE}.country ;;
+    hidden: yes
   }
 
   dimension: created_by_id {
@@ -72,11 +80,13 @@ view: sfdc_user_view {
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.createddate ;;
+    hidden: yes
   }
 
   dimension: default_group_notification_frequency {
     type: string
     sql: ${TABLE}.defaultgroupnotificationfrequency ;;
+    hidden: yes
   }
 
   dimension: delegated_approver_id {
@@ -93,6 +103,7 @@ view: sfdc_user_view {
   dimension: digest_frequency {
     type: string
     sql: ${TABLE}.digestfrequency ;;
+    hidden: yes
   }
 
   dimension: division {
@@ -108,31 +119,37 @@ view: sfdc_user_view {
   dimension: email_encoding_key {
     type: string
     sql: ${TABLE}.emailencodingkey ;;
+    hidden: yes
   }
 
   dimension: email_preferences_auto_bcc {
     type: yesno
     sql: ${TABLE}.emailpreferencesautobcc ;;
+    hidden: yes
   }
 
   dimension: email_preferences_auto_bcc_stay_in_touch {
     type: yesno
     sql: ${TABLE}.emailpreferencesautobccstayintouch ;;
+    hidden: yes
   }
 
   dimension: email_preferences_stay_in_touch_reminder {
     type: yesno
     sql: ${TABLE}.emailpreferencesstayintouchreminder ;;
+    hidden: yes
   }
 
   dimension: employee_number {
     type: string
     sql: ${TABLE}.employeenumber ;;
+    hidden: yes
   }
 
   dimension: extension {
     type: string
     sql: ${TABLE}.extension ;;
+    hidden: yes
   }
 
   dimension: fax {

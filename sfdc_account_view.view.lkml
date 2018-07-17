@@ -319,9 +319,10 @@ view: sfdc_account_view {
     group_label: "Commissions"
   }
 
-  dimension: id_client {
+  dimension: client_id {
     type: number
-    sql: NULLIF(REGEXP_SUBSTR(${TABLE}.client_id__c,'^[^.]*'),'')) ;;
+    #sql: NULLIF(REGEXP_SUBSTR(${TABLE}.client_id__c,'^[^.]*'),'')) ;;
+    sql: NULLIF(${TABLE}.client_id__c,'')::DECIMAL(18,0)::INT ;;
     description: "ID for matching SFDC to LFM"
     hidden: yes
   }
