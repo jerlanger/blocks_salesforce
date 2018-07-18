@@ -6,6 +6,7 @@ view: sfdc_contact_view {
     type: string
     primary_key: yes
     sql: ${TABLE}.id ;;
+    hidden: yes
   }
 
   dimension: account_id {
@@ -17,11 +18,13 @@ view: sfdc_contact_view {
   dimension: assistant_name {
     type: string
     sql: ${TABLE}.assistantname ;;
+    group_label: "Employment Information"
   }
 
   dimension: assistant_phone {
     type: string
     sql: ${TABLE}.assistantphone ;;
+    hidden: yes
   }
 
   dimension_group: birth {
@@ -29,6 +32,7 @@ view: sfdc_contact_view {
     timeframes: [date, week, month]
     convert_tz: no
     sql: ${TABLE}.birthdate ;;
+    hidden: yes
   }
 
   dimension: created_by_id {
@@ -46,52 +50,62 @@ view: sfdc_contact_view {
   dimension: department {
     type: string
     sql: ${TABLE}.department ;;
+    group_label: "Employment Information"
   }
 
   dimension: description {
     type: string
     sql: ${TABLE}.description ;;
+    hidden: yes
   }
 
   dimension: email {
     type: string
     sql: ${TABLE}.email ;;
+    hidden: yes
   }
 
   dimension_group: email_bounced {
     type: time
     timeframes: [date, week, month]
     sql: ${TABLE}.emailbounceddate ;;
+    hidden: yes
   }
 
   dimension: email_bounced_reason {
     type: string
     sql: ${TABLE}.emailbouncedreason ;;
+    hidden: yes
   }
 
   dimension: fax {
     type: string
     sql: ${TABLE}.fax ;;
+    hidden: yes
   }
 
   dimension: first_name {
     type: string
     sql: ${TABLE}.firstname ;;
+    hidden: yes
   }
 
   dimension: home_phone {
     type: string
     sql: ${TABLE}.homephone ;;
+    hidden: yes
   }
 
   dimension: is_deleted {
     type: yesno
-    sql: ${TABLE}.isdeleted = 'TRUE' ;;
+    sql: ${TABLE}.isdeleted = 'True' ;;
+    group_label: "Relationship to LiveIntent"
   }
 
   dimension: is_email_bounced {
     type: yesno
-    sql: ${TABLE}.isemailbounced ;;
+    sql: ${TABLE}.isemailbounced = 'True' ;;
+    group_label: "Relationship to LiveIntent"
   }
 
   dimension_group: last_activity {
@@ -116,6 +130,7 @@ view: sfdc_contact_view {
   dimension: last_name {
     type: string
     sql: ${TABLE}.lastname ;;
+    hidden: yes
   }
 
   dimension_group: last_referenced {
@@ -133,41 +148,53 @@ view: sfdc_contact_view {
   dimension: lead_source {
     type: string
     sql: ${TABLE}.leadsource ;;
+    group_label: "Relationship to LiveIntent"
   }
 
   dimension: mailing_city {
     type: string
+    label: "City"
     sql: ${TABLE}.mailingcity ;;
+    group_label: "Location Information"
   }
 
   dimension: mailing_country {
     type: string
+    label: "Country"
     sql: ${TABLE}.mailingcountry ;;
+    group_label: "Location Information"
   }
 
   dimension: mailing_latitude {
     type: number
     sql: ${TABLE}.mailinglatitude ;;
+    hidden: yes
   }
 
   dimension: mailing_longitude {
     type: number
     sql: ${TABLE}.mailinglongitude ;;
+    hidden: yes
   }
 
   dimension: mailing_postal_code {
     type: string
+    label: "Postal Code"
     sql: ${TABLE}.mailingpostalcode ;;
+    group_label: "Location Information"
   }
 
   dimension: mailing_state {
     type: string
+    label: "State"
     sql: ${TABLE}.mailingstate ;;
+    group_label: "Location Information"
   }
 
   dimension: mailing_street {
     type: string
     sql: ${TABLE}.mailingstreet ;;
+    hidden: yes
   }
 
   dimension: master_record_id {
@@ -179,6 +206,7 @@ view: sfdc_contact_view {
   dimension: mobile_phone {
     type: string
     sql: ${TABLE}.mobilephone ;;
+    hidden: yes
   }
 
   dimension: name {
@@ -189,41 +217,49 @@ view: sfdc_contact_view {
   dimension: other_city {
     type: string
     sql: ${TABLE}.othercity ;;
+    hidden: yes
   }
 
   dimension: other_country {
     type: string
     sql: ${TABLE}.othercountry ;;
+    hidden: yes
   }
 
   dimension: other_latitude {
     type: number
     sql: ${TABLE}.otherlatitude ;;
+    hidden: yes
   }
 
   dimension: other_longitude {
     type: number
     sql: ${TABLE}.otherlongitude ;;
+    hidden: yes
   }
 
   dimension: other_phone {
     type: string
     sql: ${TABLE}.otherphone ;;
+    hidden: yes
   }
 
   dimension: other_postal_code {
     type: string
     sql: ${TABLE}.otherpostalcode ;;
+    hidden: yes
   }
 
   dimension: other_state {
     type: string
     sql: ${TABLE}.otherstate ;;
+    hidden: yes
   }
 
   dimension: other_street {
     type: string
     sql: ${TABLE}.otherstreet ;;
+    hidden: yes
   }
 
   dimension: owner_id {
@@ -235,11 +271,13 @@ view: sfdc_contact_view {
   dimension: phone {
     type: string
     sql: ${TABLE}.phone ;;
+    hidden: yes
   }
 
   dimension: photo_url {
     type: string
     sql: ${TABLE}.photourl ;;
+    hidden: yes
   }
 
   dimension: reports_to_id {
@@ -251,17 +289,20 @@ view: sfdc_contact_view {
   dimension: salutation {
     type: string
     sql: ${TABLE}.salutation ;;
+    hidden: yes
   }
 
   dimension_group: system_modstamp {
     type: time
     timeframes: [date, week, month]
     sql: ${TABLE}.systemmodstamp ;;
+    hidden: yes
   }
 
   dimension: title {
     type: string
     sql: ${TABLE}.title ;;
+    group_label: "Employment Information"
   }
 
   # measures #

@@ -109,6 +109,7 @@ view: sfdc_user_view {
   dimension: division {
     type: string
     sql: ${TABLE}.division ;;
+    hidden: yes
   }
 
   dimension: email {
@@ -155,52 +156,55 @@ view: sfdc_user_view {
   dimension: fax {
     type: string
     sql: ${TABLE}.fax ;;
+    hidden: yes
   }
 
   dimension: federation_identifier {
     type: string
     sql: ${TABLE}.federationidentifier ;;
+    hidden: yes
   }
 
   dimension: first_name {
     type: string
     sql: ${TABLE}.firstname ;;
+    hidden: yes
   }
 
   dimension: forecast_enabled {
     type: yesno
     sql: ${TABLE}.forecastenabled ;;
+    hidden: yes
   }
 
   dimension: full_photo_url {
     type: string
     sql: ${TABLE}.fullphotourl ;;
+    hidden: yes
   }
 
   dimension: is_active {
     type: yesno
-    sql: ${TABLE}.isactive = 'TRUE' ;;
-  }
-
-  dimension: is_badged {
-    type: yesno
-    sql: ${TABLE}.isbadged = 'TRUE' ;;
+    sql: ${TABLE}.isactive = 'True' ;;
   }
 
   dimension: is_portal_enabled {
     type: yesno
-    sql: ${TABLE}.isportalenabled  = 'TRUE';;
+    sql: ${TABLE}.isportalenabled  = 'True';;
+    hidden: yes
   }
 
   dimension: language_locale_key {
     type: string
     sql: ${TABLE}.languagelocalekey ;;
+    hidden: yes
   }
 
   dimension_group: last_login {
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.lastlogindate ;;
+    hidden: yes
   }
 
   dimension: last_modified_by_id {
@@ -213,44 +217,52 @@ view: sfdc_user_view {
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.lastmodifieddate ;;
+    hidden: yes
   }
 
   dimension: last_name {
     type: string
     sql: ${TABLE}.lastname ;;
+    hidden: yes
   }
 
   dimension_group: last_password_change {
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.lastpasswordchangedate ;;
+    hidden: yes
   }
 
   dimension_group: last_referenced {
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.lastreferenceddate ;;
+    hidden: yes
   }
 
   dimension_group: last_viewed {
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.lastvieweddate ;;
+    hidden: yes
   }
 
   dimension: latitude {
     type: number
     sql: ${TABLE}.latitude ;;
+    hidden: yes
   }
 
   dimension: locale_sid_key {
     type: string
     sql: ${TABLE}.localesidkey ;;
+    hidden: yes
   }
 
   dimension: longitude {
     type: number
     sql: ${TABLE}.longitude ;;
+    hidden: yes
   }
 
   dimension: manager_id {
@@ -262,6 +274,7 @@ view: sfdc_user_view {
   dimension: mobile_phone {
     type: string
     sql: ${TABLE}.mobilephone ;;
+    hidden: yes
   }
 
   dimension: name {
@@ -273,27 +286,32 @@ view: sfdc_user_view {
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.offlinepdatrialexpirationdate ;;
+    hidden: yes
   }
 
   dimension_group: offline_trial_expiration {
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.offlinetrialexpirationdate ;;
+    hidden: yes
   }
 
   dimension: phone {
     type: string
     sql: ${TABLE}.phone ;;
+    hidden: yes
   }
 
   dimension: portal_role {
     type: string
     sql: ${TABLE}.portalrole ;;
+    hidden: yes
   }
 
   dimension: postal_code {
     type: string
     sql: ${TABLE}.postalcode ;;
+    hidden: yes
   }
 
   dimension: profile_id {
@@ -304,68 +322,81 @@ view: sfdc_user_view {
 
   dimension: receives_admin_info_emails {
     type: yesno
-    sql: ${TABLE}.receivesadmininfoemails = 'TRUE' ;;
+    sql: ${TABLE}.receivesadmininfoemails = 'True' ;;
+    hidden: yes
   }
 
   dimension: receives_info_emails {
     type: yesno
     sql: ${TABLE}.receivesinfoemails = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: sender_email {
     type: string
     sql: ${TABLE}.senderemail ;;
+    hidden: yes
   }
 
   dimension: sender_name {
     type: string
     sql: ${TABLE}.sendername ;;
+    hidden: yes
   }
 
   dimension: signature {
     type: string
     sql: ${TABLE}.signature ;;
+    hidden: yes
   }
 
   dimension: small_photo_url {
     type: string
     sql: ${TABLE}.smallphotourl ;;
+    hidden: yes
   }
 
   dimension: state {
     type: string
     sql: ${TABLE}.state ;;
+    hidden: yes
   }
 
   dimension: stay_in_touch_note {
     type: string
     sql: ${TABLE}.stayintouchnote ;;
+    hidden: yes
   }
 
   dimension: stay_in_touch_signature {
     type: string
     sql: ${TABLE}.stayintouchsignature ;;
+    hidden: yes
   }
 
   dimension: stay_in_touch_subject {
     type: string
     sql: ${TABLE}.stayintouchsubject ;;
+    hidden: yes
   }
 
   dimension: street {
     type: string
     sql: ${TABLE}.street ;;
+    hidden: yes
   }
 
   dimension_group: system_modstamp {
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.systemmodstamp ;;
+    hidden: yes
   }
 
   dimension: time_zone_sid_key {
     type: string
     sql: ${TABLE}.timezonesidkey ;;
+    hidden: yes
   }
 
   dimension: title {
@@ -375,278 +406,332 @@ view: sfdc_user_view {
 
   dimension: user_permissions_avantgo_user {
     type: yesno
-    sql: ${TABLE}.userpermissionsavantgouser = 'TRUE';;
+    sql: ${TABLE}.userpermissionsavantgouser = 'True';;
+    hidden: yes
   }
 
   dimension: user_permissions_call_center_auto_login {
     type: yesno
     sql: ${TABLE}.userpermissionscallcenterautologin = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_permissions_chatter_answers_user {
     type: yesno
     sql: ${TABLE}.userpermissionschatteranswersuser = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_permissions_interaction_user {
     type: yesno
     sql: ${TABLE}.userpermissionsinteractionuser = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_permissions_marketing_user {
     type: yesno
     sql: ${TABLE}.userpermissionsmarketinguser = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_permissions_mobile_user {
     type: yesno
     sql: ${TABLE}.userpermissionsmobileuser = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_permissions_offline_user {
     type: yesno
     sql: ${TABLE}.userpermissionsofflineuser = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_permissions_sfcontent_user {
     type: yesno
     sql: ${TABLE}.userpermissionssfcontentuser = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_preferences_activity_reminders_popup {
     type: yesno
     sql: ${TABLE}.userpreferencesactivityreminderspopup = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_preferences_apex_pages_developer_mode {
     type: yesno
     sql: ${TABLE}.userpreferencesapexpagesdevelopermode = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_preferences_dis_comment_after_like_email {
     type: yesno
     sql: ${TABLE}.userpreferencesdiscommentafterlikeemail = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_preferences_dis_mentions_comment_email {
     type: yesno
     sql: ${TABLE}.userpreferencesdismentionscommentemail = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_preferences_dis_prof_post_comment_email {
     type: yesno
     sql: ${TABLE}.userpreferencesdisprofpostcommentemail = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_preferences_disable_all_feeds_email {
     type: yesno
     sql: ${TABLE}.userpreferencesdisableallfeedsemail = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_preferences_disable_bookmark_email {
     type: yesno
     sql: ${TABLE}.userpreferencesdisablebookmarkemail = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_preferences_disable_change_comment_email {
     type: yesno
     sql: ${TABLE}.userpreferencesdisablechangecommentemail = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_preferences_disable_endorsement_email {
     type: yesno
     sql: ${TABLE}.userpreferencesdisableendorsementemail = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_preferences_disable_file_share_notifications_for_api {
     type: yesno
     sql: ${TABLE}.userpreferencesdisablefilesharenotificationsforapi = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_preferences_disable_followers_email {
     type: yesno
     sql: ${TABLE}.userpreferencesdisablefollowersemail = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_preferences_disable_later_comment_email {
     type: yesno
     sql: ${TABLE}.userpreferencesdisablelatercommentemail = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_preferences_disable_like_email {
     type: yesno
     sql: ${TABLE}.userpreferencesdisablelikeemail = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_preferences_disable_mentions_post_email {
     type: yesno
     sql: ${TABLE}.userpreferencesdisablementionspostemail = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_preferences_disable_message_email {
     type: yesno
     sql: ${TABLE}.userpreferencesdisablemessageemail = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_preferences_disable_profile_post_email {
     type: yesno
     sql: ${TABLE}.userpreferencesdisableprofilepostemail = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_preferences_disable_share_post_email {
     type: yesno
     sql: ${TABLE}.userpreferencesdisablesharepostemail = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_preferences_enable_auto_sub_for_feeds {
     type: yesno
     sql: ${TABLE}.userpreferencesenableautosubforfeeds = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_preferences_event_reminders_checkbox_default {
     type: yesno
     sql: ${TABLE}.userpreferenceseventreminderscheckboxdefault = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_preferences_hide_chatter_onboarding_splash {
     type: yesno
     sql: ${TABLE}.userpreferenceshidechatteronboardingsplash = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_preferences_hide_csndesktop_task {
     type: yesno
     sql: ${TABLE}.userpreferenceshidecsndesktoptask = 'TRUE';;
+    hidden: yes
   }
 
   dimension: user_preferences_hide_csnget_chatter_mobile_task {
     type: yesno
     sql: ${TABLE}.userpreferenceshidecsngetchattermobiletask = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_preferences_hide_s_1_browser_ui {
     type: yesno
     sql: ${TABLE}.userpreferenceshides1browserui = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_preferences_hide_second_chatter_onboarding_splash {
     type: yesno
     sql: ${TABLE}.userpreferenceshidesecondchatteronboardingsplash = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_preferences_lightning_experience_preferred {
     type: yesno
     sql: ${TABLE}.userpreferenceslightningexperiencepreferred = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_preferences_reminder_sound_off {
     type: yesno
     sql: ${TABLE}.userpreferencesremindersoundoff = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_preferences_show_city_to_external_users {
     type: yesno
     sql: ${TABLE}.userpreferencesshowcitytoexternalusers = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_preferences_show_city_to_guest_users {
     type: yesno
     sql: ${TABLE}.userpreferencesshowcitytoguestusers = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_preferences_show_country_to_external_users {
     type: yesno
     sql: ${TABLE}.userpreferencesshowcountrytoexternalusers = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_preferences_show_country_to_guest_users {
     type: yesno
     sql: ${TABLE}.userpreferencesshowcountrytoguestusers = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_preferences_show_email_to_external_users {
     type: yesno
     sql: ${TABLE}.userpreferencesshowemailtoexternalusers = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_preferences_show_fax_to_external_users {
     type: yesno
     sql: ${TABLE}.userpreferencesshowfaxtoexternalusers = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_preferences_show_manager_to_external_users {
     type: yesno
     sql: ${TABLE}.userpreferencesshowmanagertoexternalusers = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_preferences_show_mobile_phone_to_external_users {
     type: yesno
     sql: ${TABLE}.userpreferencesshowmobilephonetoexternalusers = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_preferences_show_postal_code_to_external_users {
     type: yesno
     sql: ${TABLE}.userpreferencesshowpostalcodetoexternalusers = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_preferences_show_postal_code_to_guest_users {
     type: yesno
     sql: ${TABLE}.userpreferencesshowpostalcodetoguestusers = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_preferences_show_profile_pic_to_guest_users {
     type: yesno
     sql: ${TABLE}.userpreferencesshowprofilepictoguestusers = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_preferences_show_state_to_external_users {
     type: yesno
     sql: ${TABLE}.userpreferencesshowstatetoexternalusers = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_preferences_show_state_to_guest_users {
     type: yesno
     sql: ${TABLE}.userpreferencesshowstatetoguestusers = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_preferences_show_street_address_to_external_users {
     type: yesno
     sql: ${TABLE}.userpreferencesshowstreetaddresstoexternalusers = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_preferences_show_title_to_external_users {
     type: yesno
     sql: ${TABLE}.userpreferencesshowtitletoexternalusers = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_preferences_show_title_to_guest_users {
     type: yesno
     sql: ${TABLE}.userpreferencesshowtitletoguestusers = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_preferences_show_work_phone_to_external_users {
     type: yesno
     sql: ${TABLE}.userpreferencesshowworkphonetoexternalusers = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_preferences_task_reminders_checkbox_default {
     type: yesno
     sql: ${TABLE}.userpreferencestaskreminderscheckboxdefault = 'TRUE' ;;
+    hidden: yes
   }
 
   dimension: user_role_id {
     type: string
     hidden: yes
-    sql: ${TABLE}.user_role_id ;;
+    sql: ${TABLE}.userroleid ;;
   }
 
   dimension: user_type {
     type: string
-    sql: ${TABLE}.user_type ;;
+    sql: ${TABLE}.usertype ;;
+    hidden: yes
   }
 
   dimension: username {
     type: string
     sql: ${TABLE}.username ;;
+    hidden: yes
   }
 
   # measures #
