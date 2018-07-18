@@ -18,7 +18,7 @@ view: sfdc_contact_view {
   dimension: assistant_name {
     type: string
     sql: ${TABLE}.assistantname ;;
-    group_label: "Employment Information"
+    group_label: "Employment"
   }
 
   dimension: assistant_phone {
@@ -50,7 +50,7 @@ view: sfdc_contact_view {
   dimension: department {
     type: string
     sql: ${TABLE}.department ;;
-    group_label: "Employment Information"
+    group_label: "Employment"
   }
 
   dimension: description {
@@ -155,14 +155,14 @@ view: sfdc_contact_view {
     type: string
     label: "City"
     sql: ${TABLE}.mailingcity ;;
-    group_label: "Location Information"
+    group_label: "Location"
   }
 
   dimension: mailing_country {
     type: string
     label: "Country"
     sql: ${TABLE}.mailingcountry ;;
-    group_label: "Location Information"
+    group_label: "Location"
   }
 
   dimension: mailing_latitude {
@@ -181,14 +181,14 @@ view: sfdc_contact_view {
     type: string
     label: "Postal Code"
     sql: ${TABLE}.mailingpostalcode ;;
-    group_label: "Location Information"
+    group_label: "Location"
   }
 
   dimension: mailing_state {
     type: string
     label: "State"
     sql: ${TABLE}.mailingstate ;;
-    group_label: "Location Information"
+    group_label: "Location"
   }
 
   dimension: mailing_street {
@@ -302,7 +302,7 @@ view: sfdc_contact_view {
   dimension: title {
     type: string
     sql: ${TABLE}.title ;;
-    group_label: "Employment Information"
+    group_label: "Employment"
   }
 
   # measures #

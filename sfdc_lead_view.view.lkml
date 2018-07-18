@@ -6,26 +6,31 @@ view: sfdc_lead_view {
     primary_key: yes
     type: string
     sql: ${TABLE}.id ;;
+    hidden: yes
   }
 
   dimension: annual_revenue {
     type: number
     sql: ${TABLE}.annualrevenue ;;
+    group_label: "Employment"
   }
 
   dimension: city {
     type: string
     sql: ${TABLE}.city ;;
+    group_label: "Location"
   }
 
   dimension: company {
     type: string
     sql: ${TABLE}.company ;;
+    group_label: "Employment"
   }
 
   dimension: company_duns_number {
     type: string
     sql: ${TABLE}.companydunsnumber ;;
+    group_label: "Employment"
   }
 
   dimension: converted_account_id {
@@ -56,6 +61,7 @@ view: sfdc_lead_view {
   dimension: country {
     type: string
     sql: ${TABLE}.country ;;
+    group_label: "Location"
   }
 
   dimension: created_by_id {
@@ -73,47 +79,56 @@ view: sfdc_lead_view {
   dimension: description {
     type: string
     sql: ${TABLE}.description ;;
+    hidden: yes
   }
 
   dimension: email {
     type: string
     sql: ${TABLE}.email ;;
+    hidden: yes
   }
 
   dimension_group: email_bounced {
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.emailbounceddate ;;
+    hidden: yes
   }
 
   dimension: email_bounced_reason {
     type: string
     sql: ${TABLE}.emailbouncedreason ;;
+    hidden: yes
   }
 
   dimension: first_name {
     type: string
     sql: ${TABLE}.firstname ;;
+    hidden: yes
   }
 
   dimension: industry {
     type: string
     sql: ${TABLE}.industry ;;
+    group_label: "Employment"
   }
 
   dimension: is_converted {
     type: yesno
-    sql: ${TABLE}.isconverted = 'TRUE';;
+    sql: ${TABLE}.isconverted = 'True';;
+    group_label: "Relationship to LiveIntent"
   }
 
   dimension: is_deleted {
     type: yesno
-    sql: ${TABLE}.isdeleted = 'TRUE';;
+    sql: ${TABLE}.isdeleted = 'True';;
+    group_label: "Relationship to LiveIntent"
   }
 
   dimension: is_unread_by_owner {
     type: yesno
     sql: ${TABLE}.isunreadbyowner ;;
+    group_label: "Relationship to LiveIntent"
   }
 
   dimension_group: last_activity {
@@ -126,17 +141,20 @@ view: sfdc_lead_view {
   dimension: last_modified_by_id {
     type: string
     sql: ${TABLE}.lastmodifiedbyid ;;
+    hidden: yes
   }
 
   dimension_group: last_modified {
     type: time
     timeframes: [date, week, month]
     sql: ${TABLE}.lastmodifieddate ;;
+    hidden: yes
   }
 
   dimension: last_name {
     type: string
     sql: ${TABLE}.lastname ;;
+    hidden: yes
   }
 
   dimension_group: last_referenced {
@@ -154,16 +172,19 @@ view: sfdc_lead_view {
   dimension: latitude {
     type: number
     sql: ${TABLE}.latitude ;;
+    hidden: yes
   }
 
   dimension: lead_source {
     type: string
     sql: ${TABLE}.leadsource ;;
+    group_label: "Relationship to LiveIntent"
   }
 
   dimension: longitude {
     type: number
     sql: ${TABLE}.longitude ;;
+    hidden: yes
   }
 
   dimension: master_record_id {
@@ -180,6 +201,7 @@ view: sfdc_lead_view {
   dimension: number_of_employees {
     type: number
     sql: ${TABLE}.numberofemployees ;;
+    group_label: "Employment"
   }
 
   dimension: owner_id {
@@ -191,16 +213,19 @@ view: sfdc_lead_view {
   dimension: phone {
     type: string
     sql: ${TABLE}.phone ;;
+    hidden: yes
   }
 
   dimension: photo_url {
     type: string
     sql: ${TABLE}.photourl ;;
+    hidden: yes
   }
 
   dimension: postal_code {
     type: string
     sql: ${TABLE}.postalcode ;;
+    group_label: "Location"
   }
 
   dimension: record_type_id {
@@ -212,37 +237,44 @@ view: sfdc_lead_view {
   dimension: salutation {
     type: string
     sql: ${TABLE}.salutation ;;
+    hidden: yes
   }
 
   dimension: state {
     type: string
     sql: ${TABLE}.state ;;
+    group_label: "Location"
   }
 
   dimension: status {
     type: string
     sql: ${TABLE}.status ;;
+    group_label: "Relationship to LiveIntent"
   }
 
   dimension: street {
     type: string
     sql: ${TABLE}.street ;;
+    hidden: yes
   }
 
   dimension_group: system_modstamp {
     type: time
     timeframes: [date, week, month]
     sql: ${TABLE}.systemmodstamp ;;
+    hidden: yes
   }
 
   dimension: title {
     type: string
     sql: ${TABLE}.title ;;
+    hidden: yes
   }
 
   dimension: website {
     type: string
     sql: ${TABLE}.website ;;
+    hidden: yes
   }
 
   # measures #
@@ -279,6 +311,7 @@ view: lead {
     sql: ${number_of_employees} ;;
     style: integer
     description: "Number of Employees as reported on the Salesforce lead"
+    group_label: "Employment"
   }
 
   measure: converted_to_contact_count {
