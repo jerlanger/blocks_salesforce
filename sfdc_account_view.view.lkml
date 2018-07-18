@@ -17,48 +17,52 @@ view: sfdc_account_view {
   }
 
   dimension: billing_city {
+    label: "City"
     type: string
     sql: ${TABLE}.billingcity ;;
-    group_label: "Company Information"
+    group_label: "Location"
   }
 
   dimension: billing_country {
+    label: "Country"
     type: string
     sql: ${TABLE}.billingcountry ;;
-    group_label: "Company Information"
+    group_label: "Location"
   }
 
   dimension: billing_latitude {
     type: number
     sql: ${TABLE}.billinglatitude ;;
-    group_label: "Company Information"
+    group_label: "Location"
     hidden: yes
   }
 
   dimension: billing_longitude {
     type: number
     sql: ${TABLE}.billinglongitude ;;
-    group_label: "Company Information"
+    group_label: "Location"
     hidden: yes
   }
 
   dimension: billing_postal_code {
+    label: "Postal Code"
     type: string
     sql: ${TABLE}.billingpostalcode ;;
-    group_label: "Company Information"
+    group_label: "Location"
   }
 
   dimension: billing_state {
+    label: "State"
     type: string
     sql: ${TABLE}.billingstate ;;
-    group_label: "Company Information"
+    group_label: "Location"
   }
 
   dimension: billing_street {
     type: string
     sql: ${TABLE}.billingstreet ;;
     hidden: yes
-    group_label: "Company Information"
+    group_label: "Location"
   }
 
   dimension: created_by_id {
@@ -120,6 +124,7 @@ view: sfdc_account_view {
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.lastmodifieddate ;;
+    hidden: yes
   }
 
   dimension_group: last_referenced {
@@ -407,6 +412,7 @@ view: sfdc_account_view {
     label: "Location: Street Address"
     group_label: "Datanyze Information"
     description: "Company Street Address"
+    hidden: yes
   }
 
   dimension: datanyze_alexa_rank {
@@ -611,6 +617,7 @@ view: sfdc_account_view {
     type: date
     sql: NULLIF(${TABLE}.last_closed_won_date__c,'')::DATE ;;
     description: "Close date of latest won opportunity"
+    group_label: "Relationship to LiveIntent"
   }
 
   dimension: last_date_marked_new {
@@ -776,12 +783,14 @@ view: sfdc_account_view {
     type: date
     sql: NULLIF(${TABLE}.greatest_closed_won_brand_flight_end__c,'')::DATE ;;
     description: "Maximum flight end date for won brand opportunities"
+    hidden: yes
   }
 
   dimension: furthest_won_flight_end_direct {
     type: date
     sql: NULLIF(${TABLE}.greatest_closed_won_flight_end__c,'')::DATE ;;
     description: "Maximum flight end date for won direct opportunities"
+    hidden: yes
   }
 
   dimension: account_manager {
@@ -832,12 +841,14 @@ view: sfdc_account_view {
     type: date
     sql: NULLIF(${TABLE}.first_opportunity_won_date__c,'')::DATE ;;
     description: "Close date of the first won opportunity associated with account"
+    group_label: "Relationship to LiveIntent"
   }
 
   dimension: first_date_opportunity_created_and_closed_won {
     type: date
     sql: NULLIF(${TABLE}.first_opportunity_won_created_date__c,'')::DATE ;;
     description: "Creation date of the first won opportunity associated with account"
+    group_label: "Relationship to LiveIntent"
   }
 
   dimension: gdpr_tier {
@@ -845,6 +856,7 @@ view: sfdc_account_view {
     sql: NULLIF(${TABLE}.gdpr_tier__c,'') ;;
     label: "GDPR Tier"
     description: "GDPR documents status"
+    group_label: "Relationship to LiveIntent"
   }
 
   dimension: has_rtb_spend_above_threshold {
@@ -866,6 +878,7 @@ view: sfdc_account_view {
     type: date
     sql: GREATEST(${furthest_won_flight_end_brand},${furthest_won_flight_end_direct}) ;;
     description: "Maximum flight end date for all opportunities"
+    hidden: yes
   }
 
   dimension: days_since_account_became_client {
@@ -902,10 +915,6 @@ view: sfdc_account_view {
 view: account {
   extends: [sfdc_account_view]
   # dimensions #
-
-  dimension: created {
-    #X# Invalid LookML inside "dimension": {"timeframes":["date","week","month","raw"]}
-  }
 
   dimension: business_segment {
     type: string
